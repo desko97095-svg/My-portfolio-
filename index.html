@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deyvis Bratov — Frontend &amp; QA</title>
+<meta name="description" content="Deyvis Bratov — frontend разработка и QA. От живи излъчвания и клиентско обслужване към код, тестове и реални клиентски проекти.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14120f;
+    --panel:#1c1913;
+    --line:#332d24;
+    --text:#f3efe7;
+    --muted:#a49a89;
+    --live:#ff5a36;
+    --pass:#35c7a6;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  ::selection{ background:var(--live); color:#14120f; }
+  :focus-visible{ outline:2px solid var(--pass); outline-offset:3px; }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 22px 80px;
+  }
+
+  h1,h2{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    margin:0;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:54px 0 36px; }
+  .live-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:12px;
+    color:var(--muted); border:1px solid var(--line);
+    border-radius:20px; padding:5px 12px 5px 10px;
+    margin-bottom:22px;
+  }
+  .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--live); box-shadow:0 0 8px var(--live);
+    animation:pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:.45; transform:scale(.75); }
+  }
+  .name{
+    font-size:clamp(52px,13vw,104px);
+    line-height:.86;
+  }
+  .role{
+    font-family:'IBM Plex Sans',sans-serif;
+    font-weight:600;
+    font-size:clamp(17px,3.4vw,21px);
+    color:var(--pass);
+    margin:20px 0 14px;
+    max-width:34ch;
+  }
+  .pitch{
+    max-width:56ch;
+    color:var(--muted);
+    font-size:15.5px;
+    margin:0 0 28px;
+  }
+  .hero-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:26px; }
+  .btn{
+    display:inline-block;
+    font-weight:600; font-size:14.5px;
+    padding:12px 22px; border-radius:8px;
+    text-decoration:none;
+  }
+  .btn.primary{ background:var(--live); color:#1a0f0a; }
+  .btn.ghost{ border:1px solid var(--line); color:var(--text); }
+  .contact-row{
+    display:flex; flex-wrap:wrap; gap:6px 18px;
+    font-size:13.5px; color:var(--muted);
+  }
+  .contact-row a{ text-decoration:underline; text-underline-offset:3px; }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:40px 0; border-top:1px solid var(--line); }
+  section h2{
+    font-size:clamp(26px,5vw,34px);
+    margin-bottom:22px;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .tag-row{ display:flex; flex-wrap:wrap; gap:9px; margin-bottom:18px; }
+  .tag{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px;
+    border:1px solid var(--line); color:var(--text);
+    padding:6px 11px; border-radius:6px;
+  }
+  .lang-line{ color:var(--muted); font-size:14px; }
+  .lang-line strong{ color:var(--text); }
+
+  /* ---------- PROJECTS ---------- */
+  .project-grid{ display:flex; flex-direction:column; gap:30px; }
+  .project-card{ display:flex; flex-direction:column; gap:13px; }
+  .live-frame{
+    position:relative;
+    border-radius:10px;
+    border:7px solid #0a0906;
+    background:#0a0906;
+    overflow:hidden;
+    aspect-ratio:16/10;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.05), 0 12px 28px rgba(0,0,0,.4);
+  }
+  .live-frame .frame-dot{
+    position:absolute; top:9px; left:11px; z-index:3;
+    width:7px; height:7px; border-radius:50%;
+    background:var(--live); box-shadow:0 0 6px var(--live);
+    animation:pulse 2s ease-in-out infinite;
+  }
+  .live-frame iframe{
+    position:absolute; top:0; left:0;
+    width:333%; height:333%;
+    transform:scale(.3); transform-origin:0 0;
+    border:0; pointer-events:none; background:#fff;
+  }
+  .live-frame .frame-link{ position:absolute; inset:0; z-index:2; }
+  .project-title{
+    display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+    font-family:'IBM Plex Sans',sans-serif; font-weight:700; font-size:17px;
+  }
+  .project-title .open{
+    font-size:12.5px; font-weight:500; color:var(--pass);
+    white-space:nowrap; text-decoration:none;
+    display:inline-flex; align-items:center; gap:5px;
+  }
+  .project-desc{ color:var(--muted); font-size:14.5px; max-width:60ch; }
+  .project-tags{ display:flex; flex-wrap:wrap; gap:7px; }
+  .project-tags .tag{ font-size:11.5px; padding:4px 9px; }
+
+  /* ---------- WORK LOG ---------- */
+  .log-row{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:16px;
+    padding:18px 0;
+    border-top:1px solid var(--line);
+  }
+  .log-row:first-of-type{ border-top:none; padding-top:0; }
+  .log-time{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px;
+    color:var(--live); padding-top:3px;
+  }
+  .log-role{ font-weight:700; font-size:15.5px; margin:0 0 6px; }
+  .log-org{ color:var(--pass); font-weight:500; }
+  .log-desc{ color:var(--muted); font-size:14px; max-width:58ch; margin:0; }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-item{ display:flex; gap:12px; padding:16px 0; border-top:1px solid var(--line); }
+  .edu-item:first-of-type{ border-top:none; padding-top:0; }
+  .edu-check{
+    flex:none; width:20px; height:20px; border-radius:50%;
+    border:1px solid var(--pass); color:var(--pass);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; margin-top:2px;
+  }
+  .edu-title{ font-weight:700; font-size:15px; margin:0 0 2px; }
+  .edu-meta{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); margin-bottom:6px; }
+  .edu-desc{ color:var(--muted); font-size:13.5px; max-width:58ch; margin:0; }
+
+  /* ---------- FOOTER ---------- */
+  .contact-footer{ text-align:left; }
+  .contact-footer p{ color:var(--muted); max-width:50ch; margin:0 0 22px; }
+  .contact-footer .btn.primary{ margin-right:10px; }
+
+  @media (prefers-reduced-motion: reduce){
+    .dot, .frame-dot{ animation:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="live-chip"><span class="dot"></span> НА ЖИВО &middot; свободен за 100% remote</div>
+    <h1 class="name">DEYVIS<br>BRATOV</h1>
+    <p class="role">Frontend разработка &amp; QA</p>
+    <p class="pitch">
+      Над 2 години съм работил в среда, в която грешката се вижда веднага —
+      на каса, на маса в Гърция, пред жива камера. Сега пренасям същата
+      дисциплина в код: завърших QA Basics в SoftUni с максимален резултат
+      и градя приложения с AI инструменти, Netlify и реални клиенти зад тях.
+    </p>
+    <div class="hero-actions">
+      <a class="btn primary" href="mailto:desko97095@gmail.com">Пиши ми</a>
+      <a class="btn ghost" href="#projects">Виж проектите</a>
+    </div>
+    <div class="contact-row">
+      <a href="mailto:desko97095@gmail.com">desko97095@gmail.com</a>
+      <a href="tel:+359894648897">0894 648 897</a>
+      <span>Козлодуй, България</span>
+    </div>
+  </header>
+
+  <section class="skills">
+    <h2>Умения</h2>
+    <div class="tag-row">
+      <span class="tag">HTML / CSS / JS</span>
+      <span class="tag">React</span>
+      <span class="tag">Netlify + Serverless Functions</span>
+      <span class="tag">Git &amp; GitHub</span>
+      <span class="tag">AI интеграции (Gemini API)</span>
+      <span class="tag">QA &amp; Manual Testing</span>
+      <span class="tag">Test Case Design</span>
+      <span class="tag">Bug Tracking</span>
+    </div>
+    <p class="lang-line"><strong>Езици:</strong> Български (роден) &middot; Английски (работно ниво)</p>
+  </section>
+
+  <section id="projects">
+    <h2>Проекти на живо</h2>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="live-frame">
+          <span class="frame-dot"></span>
+          <iframe src="https://vortexwebbg.netlify.app/" loading="lazy" title="VortexWeb.bg preview"></iframe>
+          <a class="frame-link" href="https://vortexwebbg.netlify.app/" target="_blank" rel="noopener" aria-label="Отвори VortexWeb.bg"></a>
+        </div>
+        <div class="project-title">
+          <span>VortexWeb.bg</span>
+          <a class="open" href="https://vortexwebbg.netlify.app/" target="_blank" rel="noopener">отвори сайта</a>
+        </div>
+        <p class="project-desc">
+          Landing страницата на собствената ми агенция за уеб дизайн — форма
+          за безплатна консултация с валидация на телефон, избор на бизнес
+          сфера и директна връзка по телефон, Viber или имейл.
+        </p>
+        <div class="project-tags">
+          <span class="tag">HTML / CSS / JS</span>
+          <span class="tag">Netlify Forms</span>
+          <span class="tag">Dark UI</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="live-frame">
+          <span class="frame-dot"></span>
+          <iframe src="https://prilyubo-bg.netlify.app/" loading="lazy" title="Механа При Любо preview"></iframe>
+          <a class="frame-link" href="https://prilyubo-bg.netlify.app/" target="_blank" rel="noopener" aria-label="Отвори Механа При Любо"></a>
+        </div>
+        <div class="project-title">
+          <span>Механа При Любо</span>
+          <a class="open" href="https://prilyubo-bg.netlify.app/" target="_blank" rel="noopener">отвори сайта</a>
+        </div>
+        <p class="project-desc">
+          Пълен едностраничен сайт за традиционна софийска механа — меню,
+          резервации и карта, изграден изцяло с CSS текстури и фолклорна
+          естетика, без нито една снимка.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Single-file HTML</span>
+          <span class="tag">CSS текстури</span>
+          <span class="tag">Форма за резервации</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="live-frame">
+          <span class="frame-dot"></span>
+          <iframe src="https://sweet-baklava-97a85c.netlify.app/" loading="lazy" title="Смени preview"></iframe>
+          <a class="frame-link" href="https://sweet-baklava-97a85c.netlify.app/" target="_blank" rel="noopener" aria-label="Отвори Смени"></a>
+        </div>
+        <div class="project-title">
+          <span>Смени</span>
+          <a class="open" href="https://sweet-baklava-97a85c.netlify.app/" target="_blank" rel="noopener">отвори сайта</a>
+        </div>
+        <p class="project-desc">
+          Личен инструмент за проследяване на ротационни смени и заплата —
+          съботно-неделна надбавка, автоматично изчислен православен
+          Великден за двойно заплащане и ръчни корекции по смяна.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Vanilla JS</span>
+          <span class="tag">LocalStorage</span>
+          <span class="tag">Изчисления на заплата</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Опит</h2>
+
+    <div class="log-row">
+      <div class="log-time">2026 &ndash;<br>момента</div>
+      <div>
+        <p class="log-role">Game Presenter (English) &middot; <span class="log-org">Arise / Pragmatic Play</span></p>
+        <p class="log-desc">
+          Водя живи английски излъчвания пред международна аудитория, при
+          строги регулаторни и оперативни стандарти под непрекъснат камерен
+          контрол. Бързи решения в реално време, без право на грешка.
+        </p>
+      </div>
+    </div>
+
+    <div class="log-row">
+      <div class="log-time">Гърция</div>
+      <div>
+        <p class="log-role">Сервитьор</p>
+        <p class="log-desc">
+          Комуникация изцяло на английски с международни клиенти в
+          динамична обстановка на живо.
+        </p>
+      </div>
+    </div>
+
+    <div class="log-row">
+      <div class="log-time">2+ год.</div>
+      <div>
+        <p class="log-role">Касиер</p>
+        <p class="log-desc">
+          Работа с клиенти, транзакции и разрешаване на казуси на място.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Обучение</h2>
+
+    <div class="edu-item">
+      <span class="edu-check">&#10003;</span>
+      <div>
+        <p class="edu-title">SoftUni &middot; QA Basics</p>
+        <p class="edu-meta">резултат 6.00 / 6.00 &middot; май 2026</p>
+        <p class="edu-desc">
+          15 часа: основи на QA, нива и типове тестове, тест сценарии и
+          тест кейсове, проследяване на бъгове, практически manual testing
+          workshop.
+        </p>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <span class="edu-check">&#10003;</span>
+      <div>
+        <p class="edu-title">AI-First Programming</p>
+        <p class="edu-meta">SoftUni &middot; практически модул</p>
+        <p class="edu-desc">
+          Практическо обучение по AI-базирани workflow-и за разработка и
+          архитектура на приложения.
+        </p>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <span class="edu-check">&#10003;</span>
+      <div>
+        <p class="edu-title">Професионална гимназия по ядрена енергетика</p>
+        <p class="edu-meta">5-годишен технически диплом</p>
+        <p class="edu-desc">
+          Задълбочена техническа подготовка — инженерни принципи,
+          аналитично мислене и точност в работата.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="contact-footer">
+    <h2>Свържи се</h2>
+    <p>Отворен съм за remote QA и frontend роли. Пиши ми директно — отговарям бързо.</p>
+    <a class="btn primary" href="mailto:desko97095@gmail.com">desko97095@gmail.com</a>
+    <a class="btn ghost" href="tel:+359894648897">0894 648 897</a>
+  </footer>
+
+</div>
+</body>
+</html>
